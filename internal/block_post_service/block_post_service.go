@@ -16,24 +16,25 @@ import (
 )
 
 const (
-	scrollNetworkRpcUrl   = "https://sepolia-rpc.scroll.io"
+	scrollNetworkRpcUrl   = "https://rpc.testnet.citrea.xyz"
 	senderPublicKeysIndex = 5
 	numOfSenders          = intMaxTypes.NumOfSenders
 
 	postRegistrationBlockMethod    = "postRegistrationBlock"
 	postNonRegistrationBlockMethod = "postNonRegistrationBlock"
 
-	int0Key   = 0
-	int1Key   = 1
-	int2Key   = 2
-	int3Key   = 3
-	int4Key   = 4
-	int5Key   = 5
-	int6Key   = 6
-	int8Key   = 8
-	int16Key  = 16
-	int32Key  = 32
-	minus1Key = -1
+	int0Key            = 0
+	int1Key            = 1
+	int2Key            = 2
+	int3Key            = 3
+	int4Key            = 4
+	int5Key            = 5
+	int6Key            = 6
+	int8Key            = 8
+	int16Key           = 16
+	int32Key           = 32
+	minus1Key          = -1
+	blockLookbackRange = 500
 )
 
 type blockPostService struct {
@@ -99,11 +100,16 @@ func (d *blockPostService) FetchLatestBlockNumber(ctx context.Context) (uint64, 
 }
 
 func (d *blockPostService) FetchNewPostedBlocks(startBlock uint64) ([]*bindings.RollupBlockPosted, *big.Int, error) {
-	nextBlock := startBlock + int1Key
+	latestBlock, err := d.FetchLatestBlockNumber(d.ctx)
+	if err != nil {
+		return nil, nil, errors.Join(ErrFetchLatestBlockNumberFail, err)
+	}
+
+	nextBlock := latestBlock - blockLookbackRange
 
 	iterator, err := d.rollup.FilterBlockPosted(&bind.FilterOpts{
 		Start:   nextBlock,
-		End:     nil,
+		End:     &latestBlock,
 		Context: d.ctx,
 	}, [][int32Key]byte{}, []common.Address{})
 	if err != nil {

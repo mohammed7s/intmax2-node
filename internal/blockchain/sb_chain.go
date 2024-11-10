@@ -26,31 +26,31 @@ var ErrEthereumChainIDInvalid = fmt.Errorf(
 type ChainIDType string
 
 const (
-	EthereumMainNetChainID ChainIDType = "1"
-	EthereumSepoliaChainID ChainIDType = "11155111"
+	EthereumMainNetChainID ChainIDType = "5115"
+	EthereumSepoliaChainID ChainIDType = "5115"
 
-	ScrollMainNetChainID ChainIDType = "534352"
-	ScrollSepoliaChainID ChainIDType = "534351"
+	ScrollMainNetChainID ChainIDType = "5115"
+	ScrollSepoliaChainID ChainIDType = "5115"
 )
 
 type ChainLinkEvmJSONRPC string
 
 const (
-	EthereumMainNetChainLinkEvmJSONRPC ChainLinkEvmJSONRPC = "https://mainnet.infura.io/v3"
-	EthereumSepoliaChainLinkEvmJSONRPC ChainLinkEvmJSONRPC = "https://rpc.sepolia.org"
+	EthereumMainNetChainLinkEvmJSONRPC ChainLinkEvmJSONRPC = "https://rpc.testnet.citrea.xyz"
+	EthereumSepoliaChainLinkEvmJSONRPC ChainLinkEvmJSONRPC = "https://rpc.testnet.citrea.xyz"
 
-	ScrollMainNetChainLinkEvmJSONRPC ChainLinkEvmJSONRPC = "https://rpc.scroll.io"
-	ScrollSepoliaChainLinkEvmJSONRPC ChainLinkEvmJSONRPC = "https://sepolia-rpc.scroll.io"
+	ScrollMainNetChainLinkEvmJSONRPC ChainLinkEvmJSONRPC = "https://rpc.testnet.citrea.xyz"
+	ScrollSepoliaChainLinkEvmJSONRPC ChainLinkEvmJSONRPC = "https://rpc.testnet.citrea.xyz"
 )
 
 type ChainLinkExplorer string
 
 const (
-	EthereumMainNetChainLinkExplorer ChainLinkExplorer = "https://etherscan.io"
-	EthereumSepoliaChainLinkExplorer ChainLinkExplorer = "https://sepolia.etherscan.io"
+	EthereumMainNetChainLinkExplorer ChainLinkExplorer = "https://explorer.testnet.citrea.xyz"
+	EthereumSepoliaChainLinkExplorer ChainLinkExplorer = "https://explorer.testnet.citrea.xyz"
 
-	ScrollMainNetChainLinkExplorer ChainLinkExplorer = "https://sepolia.scrollscan.com"
-	ScrollSepoliaChainLinkExplorer ChainLinkExplorer = "https://scrollscan.com"
+	ScrollMainNetChainLinkExplorer ChainLinkExplorer = "https://explorer.testnet.citrea.xyz"
+	ScrollSepoliaChainLinkExplorer ChainLinkExplorer = "https://explorer.testnet.citrea.xyz"
 )
 
 func (sb *serviceBlockchain) scrollNetworkChainIDValidator() error {

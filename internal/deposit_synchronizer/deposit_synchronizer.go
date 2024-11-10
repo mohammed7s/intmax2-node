@@ -48,7 +48,7 @@ func New(
 	dbApp SQLDriverApp,
 	sb ServiceBlockchain,
 ) DepositSynchronizer {
-	const startScrollBlockNumber uint64 = 5691248
+	const startScrollBlockNumber uint64 = 2000000
 	return &depositSynchronizer{
 		cfg:                       cfg,
 		log:                       log,
